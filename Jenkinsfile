@@ -3,14 +3,18 @@ pipeline {
   stages {
     stage('Gradle Build') {
         stages {
-            stage('Build 01') {
-                steps {
-                    sh 'gradle clean build'
-                }
-            }
-            stage('Build 02') {
-                steps {
-                    sh 'gradle clean build'
+            stage('build') {
+                stages {
+                    stage('Build 01') {
+                        steps {
+                            sh 'gradle clean build'
+                        }
+                    }
+                    stage('Build 02') {
+                        steps {
+                            sh 'gradle clean build'
+                        }
+                    }
                 }
             }
         }
