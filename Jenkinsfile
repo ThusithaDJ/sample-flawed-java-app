@@ -2,19 +2,15 @@ pipeline {
   agent any
   stages {
     stage('Gradle Build') {
-        stages {
-            stage('build') {
-                stages {
-                    stage('Build 01') {
-                        steps {
-                            sh 'gradle clean build'
-                        }
-                    }
-                    stage('Build 02') {
-                        steps {
-                            sh 'gradle clean build'
-                        }
-                    }
+        parallel {
+            stage('Build 01') {
+                steps {
+                    sh 'gradle clean build'
+                }
+            }
+            stage('Build 02') {
+                steps {
+                    sh 'gradle clean build'
                 }
             }
         }
