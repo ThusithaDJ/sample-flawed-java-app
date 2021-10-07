@@ -4,6 +4,7 @@ pipeline {
     stage('Init') {
       steps {
           sh 'echo init'
+      }
     }
     stage('Infrastructure') {
         parallel {
