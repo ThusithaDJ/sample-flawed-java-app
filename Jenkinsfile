@@ -1,14 +1,34 @@
 pipeline {
   agent any
   stages {
-    stage('Gradle Build') {
+    stage('Init') {
+      steps {
+          sh 'gradle clean build'
+      }
+    }
+    stage('Region') {
         parallel {
-            stage('Build 01') {
-                steps {
-                    sh 'gradle clean build'
+            stage('US') {
+                parallel {
+                    stage('Validate') {
+                        parallel {
+                            stages {
+                                stage('Staging validate') {
+                                    steps {
+                                        sh 'gradle clean build'
+                                    }
+                                }
+                                stage('Playground validate') {
+                                    steps {
+                                        sh 'gradle clean build'
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
             }
-            stage('Build 02') {
+            stage('EU') {
                 steps {
                     sh 'gradle clean build'
                 }
