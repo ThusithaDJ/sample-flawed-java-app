@@ -6,38 +6,46 @@ pipeline {
           sh 'gradle clean build'
       }
     }
-    stage('Region') {
+    stage('Infrastructure') {
         parallel {
-            stage('US') {
-                parallel {
+            stage('US Staging') {
+                stages {
                     stage('Validate') {
-                        parallel {
-                            stages {
-                                stage('Staging validate') {
-                                    steps {
-                                        sh 'gradle clean build'
-                                    }
-                                }
-                                stage('Playground validate') {
-                                    steps {
-                                        sh 'gradle clean build'
-                                    }
-                                }
-                            }
+                        steps {
+                            sh 'gradle clean build'
+                        }
+                    }
+                    stage('Plan') {
+                        steps {
+                            sh 'gradle clean build'
+                        }
+                    }
+                    stage('Deploy') {
+                        steps {
+                            sh 'gradle clean build'
                         }
                     }
                 }
             }
-            stage('EU') {
-                steps {
-                    sh 'gradle clean build'
+            stage('US Playground') {
+                stages {
+                    stage('Validate') {
+                        steps {
+                            sh 'gradle clean build'
+                        }
+                    }
+                    stage('Plan') {
+                        steps {
+                            sh 'gradle clean build'
+                        }
+                    }
+                    stage('Deploy') {
+                        steps {
+                            sh 'gradle clean build'
+                        }
+                    }
                 }
             }
-        }
-    }
-    stage('Deploy') {
-        steps {
-            sh 'gradle clean build'
         }
     }
   }
