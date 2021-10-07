@@ -3,8 +3,7 @@ pipeline {
   stages {
     stage('Init') {
       steps {
-          sh 'gradle clean build'
-      }
+          sh 'echo init'
     }
     stage('Infrastructure') {
         parallel {
@@ -12,17 +11,17 @@ pipeline {
                 stages {
                     stage('Validate') {
                         steps {
-                            sh 'gradle clean build'
+                            sh 'echo us staging validate'
                         }
                     }
                     stage('Plan') {
                         steps {
-                            sh 'gradle clean build'
+                            sh 'echo us plan'
                         }
                     }
                     stage('Deploy') {
                         steps {
-                            sh 'gradle clean build'
+                            sh 'echo us destroy'
                         }
                     }
                 }
@@ -31,17 +30,17 @@ pipeline {
                 stages {
                     stage('Validate') {
                         steps {
-                            sh 'gradle clean build'
+                            sh 'echo play validate'
                         }
                     }
                     stage('Plan') {
                         steps {
-                            sh 'gradle clean build'
+                            sh 'echo play plan'
                         }
                     }
                     stage('Deploy') {
                         steps {
-                            sh 'gradle clean build'
+                            sh 'echo play destroy'
                         }
                     }
                 }
