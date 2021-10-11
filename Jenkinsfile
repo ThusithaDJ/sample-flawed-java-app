@@ -35,7 +35,7 @@ pipeline {
                     }
                     stage('Deploy') {
                         steps {
-                            sh "Deploying to ${params.deploy_env}"
+                            sh "echo Deploying to ${params.deploy_env}"
                         }
                     }
                 }
