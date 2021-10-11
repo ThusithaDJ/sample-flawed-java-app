@@ -1,19 +1,19 @@
 pipeline {
   agent any
+  parameters{
+      choice( name: 'deploy_env',
+              choices: 'dev\nstage\nprod',
+              description: 'Choose deployment location')
+      booleanParam(
+                      name: 'User Approval Needed?',
+                      defaultValue: true,
+                      description: 'User approval required stages')
+      string(
+              name: 'String param',
+              defaultValue: 'Default',
+              description: 'description')
+  }
   stages {
-    parameters{
-        choice( name: 'deploy_env',
-                choices: 'dev\nstage\nprod',
-                description: 'Choose deployment location')
-        booleanParam(
-                        name: 'User Approval Needed?',
-                        defaultValue: true,
-                        description: 'User approval required stages')
-        string(
-                name: 'String param',
-                defaultValue: 'Default',
-                description: 'description')
-    }
     stage('Init') {
       steps {
           sh 'echo init'
