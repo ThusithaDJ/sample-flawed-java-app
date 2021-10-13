@@ -20,8 +20,8 @@ pipeline {
 
           script {
 
-              def data = readJSON file: 'environment-info.json'
-              println(data.us.staging.regions)
+              def data = readProperties file: 'staging.readProperties'
+              println(data.regions)
           }
       }
     }
