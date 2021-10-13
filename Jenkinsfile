@@ -21,7 +21,7 @@ pipeline {
           script {
 
               def data = readFile(file: 'staging.properties')
-              println(data)
+              println(data.regions)
           }
       }
     }
