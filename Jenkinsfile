@@ -1,7 +1,3 @@
-def prop = readProperties file: 'staging.properties'
-def jobs = [:]
-def regions = data.regions.split(',')
-
 pipeline {
   agent any
   parameters{
@@ -21,13 +17,8 @@ pipeline {
     stage('Init') {
       steps {
           sh 'echo init'
-
           script {
-
-              def data = readProperties file: 'staging.properties'
-              for (item in regions) {
-                println(item)
-              }
+            doDynamicParallelSteps()
           }
       }
     }
@@ -74,5 +65,13 @@ pipeline {
         }
     }
   }
+}
+
+def doDynamicParallelSteps() {
+    jobs = [:]
+    def data = readProperties file: 'staging.properties'
+    for (item in data.regions.split(',')) {
+    println(item)
+    }
 }
 
