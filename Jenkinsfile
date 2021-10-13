@@ -21,7 +21,7 @@ pipeline {
           script {
 
               def data = readProperties file: 'staging.properties'
-              for (item in data.regions) {
+              for (item in data.regions.split(',')) {
                 println(item)
               }
           }
