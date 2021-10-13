@@ -19,7 +19,12 @@ pipeline {
           sh 'echo init'
 
           script {
-              def data = readFile(file: 'staging.properties')
+            Properties properties = new Properties()
+            File propertiesFile = new File('staging.properties')
+            propertiesFile.withInputStream {
+                properties.load(it)
+            }
+              def data = properties.regions
               println(data)
           }
       }
