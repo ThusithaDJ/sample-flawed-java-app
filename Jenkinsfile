@@ -1,3 +1,7 @@
+def prop = readProperties file: 'staging.properties'
+def jobs = [:]
+def regions = data.regions.split(',')
+
 pipeline {
   agent any
   parameters{
@@ -21,7 +25,7 @@ pipeline {
           script {
 
               def data = readProperties file: 'staging.properties'
-              for (item in data.regions.split(',')) {
+              for (item in regions) {
                 println(item)
               }
           }
