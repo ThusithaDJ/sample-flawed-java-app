@@ -20,7 +20,7 @@ pipeline {
 
           script {
 
-              def data = readProperties file: 'staging.readProperties'
+              def data = readProperties file: 'staging.properties'
               println(data.regions)
           }
       }
