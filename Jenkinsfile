@@ -17,50 +17,12 @@ pipeline {
     stage('Init') {
       steps {
           sh 'echo init'
-          script {
-            doDynamicParallelSteps()
-          }
       }
     }
     stage('Infrastructure') {
-        parallel {
-            stage('US Staging') {
-                stages {
-                    stage('Validate') {
-                        steps {
-                            sh 'echo us staging validate'
-                        }
-                    }
-                    stage('Plan') {
-                        steps {
-                            sh 'echo us plan'
-                        }
-                    }
-                    stage('Deploy') {
-                        steps {
-                            sh "echo Deploying to ${params.deploy_env}"
-                        }
-                    }
-                }
-            }
-            stage('US Playground') {
-                stages {
-                    stage('Validate') {
-                        steps {
-                            sh 'echo play validate'
-                        }
-                    }
-                    stage('Plan') {
-                        steps {
-                            sh 'echo play plan'
-                        }
-                    }
-                    stage('Deploy') {
-                        steps {
-                            sh 'echo play destroy'
-                        }
-                    }
-                }
+        steps {
+            script {
+                doDynamicParallelSteps()
             }
         }
     }
@@ -71,7 +33,32 @@ def doDynamicParallelSteps() {
     jobs = [:]
     def data = readProperties file: 'staging.properties'
     for (item in data.regions.split(',')) {
-    println(item)
+        jobs["${item}"] = {
+            node {
+                stage("${item}") {
+                    stage('US Staging') {
+                        stages {
+                            stage('Validate') {
+                                steps {
+                                    sh 'echo us staging validate'
+                                }
+                            }
+                            stage('Plan') {
+                                steps {
+                                    sh 'echo us plan'
+                                }
+                            }
+                            stage('Deploy') {
+                                steps {
+                                    sh "echo Deploying to ${params.deploy_env}"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
+    parallel jobs
 }
 
