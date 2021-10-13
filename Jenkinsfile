@@ -36,7 +36,6 @@ def doDynamicParallelSteps() {
         jobs["${item}"] = {
             node {
                 stage("${item}") {
-                    stages {
                         stage('Validate') {
                             steps {
                                 sh 'echo us staging validate'
@@ -52,7 +51,6 @@ def doDynamicParallelSteps() {
                                 sh "echo Deploying to ${params.deploy_env}"
                             }
                         }
-                    }
                 }
             }
         }
