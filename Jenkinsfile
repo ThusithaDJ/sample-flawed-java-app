@@ -17,6 +17,8 @@ pipeline {
     stage('Init') {
       steps {
           sh 'echo init'
+          def data = readFile(file: 'staging.properties')
+          println(data)
       }
     }
     stage('Infrastructure') {
