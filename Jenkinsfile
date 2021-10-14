@@ -1,4 +1,5 @@
 def regions = [:]
+def environment = 'staging'
 
 pipeline {
   agent any
@@ -27,7 +28,8 @@ pipeline {
     stage('configs') {
         steps {
             script {
-                def prop = readProperties file: '${deploy_env}.properties'
+                environment = ${deploy_env}
+                def prop = readProperties file: environment+'.properties'
                 regions = prop.regions.split(',')
                 println('Regions: '+ regions.size())
             }
