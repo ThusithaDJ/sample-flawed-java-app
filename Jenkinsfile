@@ -26,7 +26,7 @@ pipeline {
             script {
                 def prop = readProperties file: 'staging.properties'
                 regions = prop.regions.split(',')
-                println(regions)
+                println(regions[0])
             }
         }
     }
