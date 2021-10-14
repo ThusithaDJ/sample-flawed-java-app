@@ -2,6 +2,9 @@ def regions = [:]
 
 pipeline {
   agent any
+  options {
+    timeout(time: 60, unit: 'MINUTES')
+  }
   parameters{
       choice( name: 'deploy_env',
               choices: 'dev\nstage\nprod',
