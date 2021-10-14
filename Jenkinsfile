@@ -27,7 +27,7 @@ pipeline {
     stage('configs') {
         steps {
             script {
-                def prop = readProperties file: 'staging.properties'
+                def prop = readProperties file: '${deploy_env}.properties'
                 regions = prop.regions.split(',')
                 println('Regions: '+ regions.size())
             }
