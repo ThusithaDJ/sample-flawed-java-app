@@ -30,7 +30,7 @@ pipeline {
                 def prop = readProperties file: 'staging.properties'
                 regions = prop.regions.split(',')
                 println('Region 1:' )
-                println('Regions count: ${regions.size()}')
+                println(regions.size())
             }
         }
     }
@@ -40,7 +40,7 @@ pipeline {
                 stages {
                     stage('Validate') {
                         steps {
-                            sh 'echo us staging validate ${regions}.size()'
+                            sh 'echo us staging validate ${regions.size()}'
                         }
                     }
                     stage('Plan') {
