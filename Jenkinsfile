@@ -28,10 +28,12 @@ pipeline {
     stage('configs') {
         steps {
             script {
-                environment = params.deploy_env
+//                 environment = params.deploy_env
+                environment = 'staging'
                 def prop = readProperties file: environment+'.properties'
                 regions = prop.regions.split(',')
                 println('Regions: '+ regions.size())
+                echo 'selected env : ${environment}'
             }
         }
     }
