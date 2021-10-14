@@ -29,7 +29,8 @@ pipeline {
             script {
                 def prop = readProperties file: 'staging.properties'
                 regions = prop.regions.split(',')
-                println('Regions count: ${regions}.size()')
+                println('Region 1:' )
+                println('Regions count: ' ${regions}.size())
             }
         }
     }
