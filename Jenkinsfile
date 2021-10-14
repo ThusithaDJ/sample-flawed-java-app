@@ -40,7 +40,7 @@ pipeline {
                 stages {
                     stage('Validate') {
                         steps {
-                            sh 'echo us staging validate ${regions.size()}'
+                            sh 'echo us staging validate regions.size()'
                         }
                     }
                     stage('Plan') {
