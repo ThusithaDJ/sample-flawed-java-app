@@ -2,6 +2,7 @@ def regions = [:]
 def environment = 'staging'
 def map = ['staging':'us', 'prod':'eu']
 def foo = ["1", "2", "3"]
+def targetEnv = 'staging'
 
 def parallelStagesFromMap = foo.collectEntries {
     println('ParallelStage' + params.deploy_env)
@@ -23,6 +24,7 @@ def generateStage(bar) {
 node {
     stage('config') {
         println('config '+params.deploy_env)
+        targetEnv = params.deploy_env
     }
     parallel parallelStagesFromMap
 
