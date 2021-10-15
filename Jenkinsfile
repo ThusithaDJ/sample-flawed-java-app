@@ -35,8 +35,8 @@ pipeline {
                 println('Regions: '+ regions.size())
 //                 def text = 'selected env : ${environment}'
 //                 println(text)
-                newFunction().call()
             }
+            newFunction()
         }
     }
     stage('Infrastructure') {
@@ -84,11 +84,6 @@ pipeline {
   }
 }
 
-def newFunction = {
-    return {
-        stage('a') {
-            echo 'hello world'
-        }
-    }
+void newFunction() {
+    sh 'echo sdfds'
 }
-
