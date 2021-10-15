@@ -86,7 +86,7 @@ pipeline {
 
 def sampleFunction() {
     node {
-        stage("stage name) {
+        stage("stage name") {
             echo 'drftyrd'
         }
     }
