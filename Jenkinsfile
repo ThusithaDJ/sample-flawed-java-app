@@ -35,7 +35,7 @@ pipeline {
                 println('Regions: '+ regions.size())
                 def text = 'selected env : ${environment}'
                 println(text)
-                sampleFunction()
+                sampleFunction().call()
             }
         }
     }
