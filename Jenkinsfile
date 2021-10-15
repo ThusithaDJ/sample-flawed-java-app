@@ -33,8 +33,8 @@ pipeline {
                 def prop = readProperties file: environment+'.properties'
                 regions = prop.regions.split(',')
                 println('Regions: '+ regions.size())
-                def text = 'selected env : ${environment}'
-                println(text)
+//                 def text = 'selected env : ${environment}'
+//                 println(text)
                 newFunction().call()
             }
         }
