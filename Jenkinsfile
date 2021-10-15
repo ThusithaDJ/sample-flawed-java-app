@@ -1,6 +1,6 @@
 def regions = [:]
 def environment = 'staging'
-
+def map = ['staging':'us', 'staging':'eu']
 pipeline {
   agent any
   options {
@@ -35,8 +35,32 @@ pipeline {
                 println('Regions: '+ regions.size())
 //                 def text = 'selected env : ${environment}'
 //                 println(text)
+
+                map.each { entry ->
+                    stage(entry.key) {
+                        stages {
+                            stage('Validate') {
+                                steps {
+                                    sh 'echo us staging validate'
+                                }
+                            }
+                            stage('Plan') {
+                                steps {
+                                    sh 'echo us plan'
+                                }
+                            }
+                            stage('Deploy') {
+                                steps {
+                                    sh "echo Deploying to ${params.deploy_env}"
+                                }
+                            }
+                        }
+
+                    }
+
+                }
             }
-            newFunction()
+//             newFunction()
         }
     }
     stage('Infrastructure') {
