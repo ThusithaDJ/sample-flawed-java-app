@@ -85,9 +85,11 @@ pipeline {
 }
 
 void newFunction() {
-    stage('Validate') {
-                            steps {
-                                sh 'echo play validate'
-                            }
-                        }
+    script {
+        stage('Validate') {
+                                    steps {
+                                        sh 'echo play validate'
+                                    }
+                                }
+    }
 }
