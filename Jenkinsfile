@@ -1,7 +1,7 @@
 def regions = [:]
 def environment = 'staging'
 def map = ['staging':'us', 'prod':'eu']
-def foo = ["1", "2", "3"]
+def foo = params.deploy_env
 def targetEnv = 'staging'
 
 def parallelStagesFromMap = foo.collectEntries {
