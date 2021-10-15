@@ -1,6 +1,6 @@
 def regions = [:]
 def environment = 'staging'
-def map = ['staging':'us', 'staging':'eu']
+def map = ['staging':'us', 'prod':'eu']
 pipeline {
   agent any
   options {
