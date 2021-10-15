@@ -85,5 +85,9 @@ pipeline {
 }
 
 void newFunction() {
-    sh 'echo sdfds'
+    stage('Validate') {
+                            steps {
+                                sh 'echo play validate'
+                            }
+                        }
 }
