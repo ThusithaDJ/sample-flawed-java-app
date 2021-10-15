@@ -12,6 +12,9 @@ def generateStage(bar) {
         stage("Build ${bar}") {
             echo "Building for ${bar}"
         }
+        stage("test ${bar}") {
+            echo "Building for ${bar}"
+        }
     }
 }
 
