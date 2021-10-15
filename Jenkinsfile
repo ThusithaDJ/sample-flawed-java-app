@@ -27,7 +27,7 @@ node {
     }
     parallel parallelStagesFromMap
 
-    generateStage("skipped") // no invocation, stage is skipped
-
-    generateStage("nonparallel").call()
+//     generateStage("skipped") // no invocation, stage is skipped
+//
+//     generateStage("nonparallel").call()
 }
