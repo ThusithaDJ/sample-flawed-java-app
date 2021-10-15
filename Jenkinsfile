@@ -6,13 +6,13 @@ def targetEnv = 'staging'
 
 def parallelStagesFromMap = foo.collectEntries {
     println('ParallelStage' + params.deploy_env)
-    ["Build ${it}" : generateStage(it)]
+    ["Build ${it}" : generateStage(params.deploy_env,it)]
 }
 
-def generateStage(bar) {
+def generateStage(env, bar) {
     return {
         stage("Build ${bar}") {
-        println('generateStage ${targetEnv} ' + params.deploy_env)
+        println('generateStage ${env} ' + params.deploy_env)
             echo "Building for ${bar}"
         }
         stage("test ${bar}") {
