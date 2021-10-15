@@ -35,7 +35,7 @@ pipeline {
                 println('Regions: '+ regions.size())
                 def text = 'selected env : ${environment}'
                 println(text)
-                sampleFunction('samplestage')
+                sampleFunction()
             }
         }
     }
@@ -84,10 +84,10 @@ pipeline {
   }
 }
 
-def sampleFunction(name) {
+def sampleFunction() {
     node {
-        stage("stage name ${name}") {
-            echo "${name}"
+        stage("stage name) {
+            echo 'drftyrd'
         }
     }
 }
