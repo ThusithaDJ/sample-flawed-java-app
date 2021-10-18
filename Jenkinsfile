@@ -5,6 +5,7 @@ def targetEnv = 'staging'
 def map = [ 'staging':['us', 'eu'],
             'dev':['us', 'eu']]
 
+@NonCPS
 def handleParams() {
     foo = params.deploy_env
     println('HandlePrams')
@@ -24,7 +25,7 @@ def generateStage(env, bar) {
             echo "Building for ${bar}"
         }
         stage('deploy') {
-            input (message: "Do you want to continue?")
+//             input (message: "Do you want to continue?")
         }
     }
 }
