@@ -31,15 +31,20 @@ def generateStage(env, bar) {
 }
 
 node {
-    stage('config') {
-        println('config '+params.deploy_env)
-        handleParams()
-        targetEnv = params.deploy_env
-        foo = params.deploy_env
+    try {
+        stage('config') {
+            println('config '+params.deploy_env)
+            handleParams()
+            targetEnv = params.deploy_env
+            foo = params.deploy_env
+        }
+        //     parallel parallelStagesFromMap
+
+        //     generateStage("skipped") // no invocation, stage is skipped
+
+        generateStage("nonparallel").call()
+    } catch(err) {
+        println("ERR: ${err}")
+        currentBuild.result = 'FAILED'
     }
-//     parallel parallelStagesFromMap
-
-//     generateStage("skipped") // no invocation, stage is skipped
-
-    generateStage("nonparallel").call()
 }
