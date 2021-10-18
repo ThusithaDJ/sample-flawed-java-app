@@ -17,6 +17,11 @@ def generateStage(env, bar) {
         stage("test ${bar}") {
             echo "Building for ${bar}"
         }
+        stage('deploy') {
+            input {
+                message "Do you want to continue?"
+            }
+        }
     }
 }
 
