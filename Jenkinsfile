@@ -3,13 +3,16 @@ def environment = 'staging'
 def map = ['staging':'us', 'prod':'eu']
 def foo = ["1", "2", "3"]
 def targetEnv = 'staging'
+def map = [ 'staging':['us', 'eu'],
+            'dev':['us', 'eu']]
 
-def stages() {
-    def parallelStagesFromMap = foo.collectEntries {
-        println('ParallelStage' + params.deploy_env)
-        ["Build ${it}" : generateStage(params.deploy_env,it)]
-    }
-    return parallelStagesFromMap
+def handleParams() {
+    foo = params.deploy_env
+}
+
+def parallelStagesFromMap = foo.collectEntries {
+    println('ParallelStage' + params.deploy_env)
+    ["Build ${it}" : generateStage(params.deploy_env,it)]
 }
 
 def generateStage(env, bar) {
@@ -29,10 +32,11 @@ def generateStage(env, bar) {
 node {
     stage('config') {
         println('config '+params.deploy_env)
+        handleParams()
         targetEnv = params.deploy_env
         foo = params.deploy_env
     }
-    parallel stages
+    parallel parallelStagesFromMap
 
 //     generateStage("skipped") // no invocation, stage is skipped
 //
