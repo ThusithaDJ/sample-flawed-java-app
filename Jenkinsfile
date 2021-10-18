@@ -1,3 +1,4 @@
+def env = ['linux', 'windows', 'mac']
 pipeline {
     agent none
     stages {
@@ -7,12 +8,12 @@ pipeline {
                 axes {
                     axis {
                         name 'PLATFORM'
-                        values 'linux', 'windows', 'mac'
+                        values ${env}
                     }
-                    axis {
-                        name 'BROWSER'
-                        values 'firefox', 'chrome', 'safari', 'edge'
-                    }
+//                     axis {
+//                         name 'BROWSER'
+//                         values 'firefox', 'chrome', 'safari', 'edge'
+//                     }
                 }
                 stages {
                     stage('Build') {
