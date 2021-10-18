@@ -41,6 +41,7 @@ node {
         //     parallel parallelStagesFromMap
 
         //     generateStage("skipped") // no invocation, stage is skipped
+        println(params.deploy_env)
 
         generateStage("sdfghdfg", "nonparallel").call()
     } catch(err) {
