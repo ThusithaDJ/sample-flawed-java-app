@@ -7,6 +7,7 @@ def map = [ 'staging':['us', 'eu'],
 
 def handleParams() {
     foo = params.deploy_env
+    println('HandlePrams')
 }
 
 def parallelStagesFromMap = foo.collectEntries {
