@@ -8,7 +8,7 @@ pipeline {
                 axes {
                     axis {
                         name 'PLATFORM'
-                        values ${env}
+                        values env
                     }
 //                     axis {
 //                         name 'BROWSER'
