@@ -1,6 +1,5 @@
 def regions = [:]
 def environment = 'staging'
-def map = ['staging':'us', 'prod':'eu']
 def foo = ["1", "2", "3"]
 def targetEnv = 'staging'
 def map = [ 'staging':['us', 'eu'],
