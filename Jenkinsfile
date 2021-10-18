@@ -42,7 +42,7 @@ node {
 
         //     generateStage("skipped") // no invocation, stage is skipped
 
-        generateStage("${params.deploy_env}", "nonparallel").call()
+        generateStage("${targetEnv}", "nonparallel").call()
     } catch(err) {
         println("ERR: ${err}")
         currentBuild.result = 'FAILED'
