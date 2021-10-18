@@ -1,33 +1,45 @@
-def env = ['linux', 'windows', 'mac']
-pipeline {
-    agent none
-    stages {
-        stage('BuildAndTest') {
-            matrix {
-                agent any
-                axes {
-                    axis {
-                        name 'PLATFORM'
-                        values env
-                    }
-//                     axis {
-//                         name 'BROWSER'
-//                         values 'firefox', 'chrome', 'safari', 'edge'
-//                     }
-                }
-                stages {
-                    stage('Build') {
-                        steps {
-                            echo "Do Build for ${PLATFORM} - ${BROWSER}"
-                        }
-                    }
-                    stage('Test') {
-                        steps {
-                            echo "Do Test for ${PLATFORM} - ${BROWSER}"
-                        }
-                    }
-                }
-            }
+def regions = [:]
+def environment = 'staging'
+def foo = ["1", "2", "3"]
+def targetEnv = 'staging'
+def map = [ 'staging':['us', 'eu'],
+            'dev':['us', 'eu']]
+
+@NonCPS
+def handleParams() {
+    foo = params.deploy_env
+    println('HandlePrams')
+}
+
+def parallelStagesFromMap = foo.collectEntries {
+    println('ParallelStage' + params.deploy_env)
+    ["Build ${it}" : generateStage(params.deploy_env,it)]
+}
+
+def generateStage(env, bar) {
+    return {
+        stage("Build ${bar}") {
+            echo "Building ${env} for ${bar}"
+        }
+        stage("test ${bar}") {
+            echo "Building for ${bar}"
+        }
+        stage('deploy') {
+//             input (message: "Do you want to continue?")
         }
     }
+}
+
+node {
+    stage('config') {
+        println('config '+params.deploy_env)
+        handleParams()
+        targetEnv = params.deploy_env
+        foo = params.deploy_env
+    }
+//     parallel parallelStagesFromMap
+
+//     generateStage("skipped") // no invocation, stage is skipped
+
+    generateStage("nonparallel").call()
 }
