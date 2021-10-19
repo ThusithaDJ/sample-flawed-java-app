@@ -36,9 +36,10 @@ def doDynamicParallelSteps(foos) {
     def vals = foos.get('dev')
   tests = [:]
   for (f in vals) {
+    def val = f
     tests["${f}"] = {
       node {
-        stage("${f}") {
+        stage("${val}") {
           echo '${f}'
         }
         stage("Build ${f}") {
@@ -71,10 +72,11 @@ node {
 //         stage ('Infrastructure') {
 //             generateStage("sdfghdfg", "nonparallel").call()
 //         }
-        stage ('Infrastructure') {
-//             generateStage("sdfghdfg", "nonparallel").call()
-            doDynamicParallelSteps(fool)
-        }
+//         stage ('Infrastructure') {
+// //             generateStage("sdfghdfg", "nonparallel").call()
+//             doDynamicParallelSteps(fool)
+//         }
+
     } catch(err) {
         println("ERR: ${err}")
         currentBuild.result = 'FAILED'
