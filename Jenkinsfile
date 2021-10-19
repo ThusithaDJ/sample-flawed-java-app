@@ -32,6 +32,7 @@ def generateStage(env, bar) {
 
 def doDynamicParallelSteps() {
     println('doDynamicParallelSteps')
+    println(foo)
   tests = [:]
   for (f in foo) {
     tests["${f}"] = {
