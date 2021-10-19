@@ -32,7 +32,7 @@ def generateStage(env, bar) {
 
 def doDynamicParallelSteps() {
   tests = [:]
-  for (f in foo) {
+  for (f in params.deploy_env) {
     tests["${f}"] = {
       node {
         stage("${f}") {
