@@ -54,6 +54,8 @@ def doDynamicParallelSteps(foos) {
 }
 
 node {
+            def fool = ['stage':["1", "2"],
+                        'dev':["1", "2", "3"]]
     try {
         stage('config') {
             println('config '+params.deploy_env)
@@ -71,8 +73,6 @@ node {
 //         }
         stage ('Infrastructure') {
 //             generateStage("sdfghdfg", "nonparallel").call()
-            def fool = ['stage':["1", "2"],
-                        'dev':["1", "2", "3"]]
             doDynamicParallelSteps(fool)
         }
     } catch(err) {
