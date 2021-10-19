@@ -52,8 +52,8 @@ def doDynamicParallelSteps(foos) {
             echo "Building for ${val}"
         }
         stage('deploy test ${val}') {
-            input (message: "Do you want to continue?")
             if (env.BRANCH_NAME == 'dev') {
+                input (message: "Do you want to continue?")
                 echo "Building for ${val}"
             }
         }
