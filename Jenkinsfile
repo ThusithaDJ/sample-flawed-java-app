@@ -33,8 +33,9 @@ def generateStage(env, bar) {
 def doDynamicParallelSteps(foos) {
     println('doDynamicParallelSteps')
     println(foos)
+    def vals = foos.get('stage')
   tests = [:]
-  for (f in foos) {
+  for (f in vals) {
     tests["${f}"] = {
       node {
         stage("${f}") {
@@ -70,7 +71,8 @@ node {
 //         }
         stage ('Infrastructure') {
 //             generateStage("sdfghdfg", "nonparallel").call()
-            def fool = ["1", "2", "3"]
+            def fool = ['stage':["1", "2"],
+                        'dev':["1", "2", "3"]]
             doDynamicParallelSteps(fool)
         }
     } catch(err) {
