@@ -64,7 +64,8 @@ node {
 //         }
         stage ('Infrastructure') {
 //             generateStage("sdfghdfg", "nonparallel").call()
-            doDynamicParallelSteps(foo)
+            def fool = ["1", "2", "3"]
+            doDynamicParallelSteps(fool)
         }
     } catch(err) {
         println("ERR: ${err}")
