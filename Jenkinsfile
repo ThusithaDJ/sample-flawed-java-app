@@ -72,10 +72,10 @@ node {
 //         stage ('Infrastructure') {
 //             generateStage("sdfghdfg", "nonparallel").call()
 //         }
-//         stage ('Infrastructure') {
-// //             generateStage("sdfghdfg", "nonparallel").call()
-//             doDynamicParallelSteps(fool)
-//         }
+        stage ('Infrastructure') {
+//             generateStage("sdfghdfg", "nonparallel").call()
+            doDynamicParallelSteps(fool)
+        }
 
     } catch(err) {
         println("ERR: ${err}")
