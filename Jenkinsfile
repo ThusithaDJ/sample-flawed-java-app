@@ -40,6 +40,12 @@ def doDynamicParallelSteps(foos) {
         stage("${f}") {
           echo '${f}'
         }
+        stage("Build ${f}") {
+            echo "Building ${f} for ${f}"
+        }
+        stage("test ${f}") {
+            echo "Building for ${f}"
+        }
       }
     }
   }
