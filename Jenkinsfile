@@ -30,6 +30,20 @@ def generateStage(env, bar) {
     }
 }
 
+def doDynamicParallelSteps() {
+  tests = [:]
+  for (f in foo) {
+    tests["${f}"] = {
+      node {
+        stage("${f}") {
+          echo '${f}'
+        }
+      }
+    }
+  }
+  parallel tests
+}
+
 node {
     try {
         stage('config') {
@@ -41,10 +55,14 @@ node {
         //     parallel parallelStagesFromMap
 
         //     generateStage("skipped") // no invocation, stage is skipped
-        println(params.deploy_env)
-
+//         println(params.deploy_env)
+//
+//         stage ('Infrastructure') {
+//             generateStage("sdfghdfg", "nonparallel").call()
+//         }
         stage ('Infrastructure') {
-            generateStage("sdfghdfg", "nonparallel").call()
+//             generateStage("sdfghdfg", "nonparallel").call()
+            doDynamicParallelSteps()
         }
     } catch(err) {
         println("ERR: ${err}")
