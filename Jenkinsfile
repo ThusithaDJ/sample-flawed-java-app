@@ -43,7 +43,13 @@ def doDynamicParallelSteps(foos) {
     tests["${f}"] = {
       node {
 
-        def scmvars = checkout(scm)
+        def scmvars = checkout([
+                        $class: 'GitSCM',
+                        branches: scm.branches,
+                        doGenerateSubmoduleConfigurations: scm.doGenerateSubmoduleConfigurations,
+                        extensions: scm.extensions,
+                        userRemoteConfigs: scm.userRemoteConfigs
+                                ])
         def commitHash = scmvars.GIT_COMMIT
 //         def gitBranch = scmvars.GIT_BRANCH ? scmvars.GIT_BRANCH : BRANCH
 //
