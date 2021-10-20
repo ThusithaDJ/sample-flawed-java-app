@@ -45,7 +45,7 @@ def doDynamicParallelSteps(foos) {
 
         def scmvars = checkout([
                         $class: 'GitSCM',
-                        branches: [[name: 'origin/6767']],
+                        branches: [[name: 'refs/remotes/origin/master']],
                         doGenerateSubmoduleConfigurations: false,
                         extensions: scm.extensions,
                         userRemoteConfigs: scm.userRemoteConfigs
