@@ -58,6 +58,7 @@ def doDynamicParallelSteps(foos) {
 //
 //         println("Branch :" + BRANCH)
         println("============================= SCM BRANCH :"+ scmvars.GIT_BRANCH)
+        println("============================= env BRANCH :"+ env.BRANCH_NAME)
 
         stage("${val}") {
           echo '${f}'
