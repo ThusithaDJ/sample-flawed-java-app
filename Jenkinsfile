@@ -42,6 +42,7 @@ def doDynamicParallelSteps(foos) {
     def val = f
     tests["${f}"] = {
       node {
+        skipDefaultCheckout()
 
         def scmvars = checkout([
                         $class: 'GitSCM',
