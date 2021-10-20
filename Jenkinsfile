@@ -50,6 +50,7 @@ def doDynamicParallelSteps(foos) {
                         extensions: scm.extensions + [[$class: 'LocalBranch'], [$class: 'WipeWorkspace']],
                         userRemoteConfigs: scm.userRemoteConfigs
                                 ])
+
         def commitHash = scmvars.GIT_COMMIT
 //         def gitBranch = scmvars.GIT_BRANCH ? scmvars.GIT_BRANCH : BRANCH
 //
