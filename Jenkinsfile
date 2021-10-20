@@ -47,8 +47,8 @@ def doDynamicParallelSteps(foos) {
                         $class: 'GitSCM',
                         branches: [[name: 'refs/remotes/origin/master']],
                         doGenerateSubmoduleConfigurations: false,
-                        extensions: [],
-                        userRemoteConfigs: [[]]
+                        extensions: scm.extensions,
+                        userRemoteConfigs: scm.userRemoteConfigs
                                 ])
         def commitHash = scmvars.GIT_COMMIT
 //         def gitBranch = scmvars.GIT_BRANCH ? scmvars.GIT_BRANCH : BRANCH
