@@ -42,19 +42,23 @@ def doDynamicParallelSteps(foos) {
     def val = f
     tests["${f}"] = {
       node {
+        skipDefaultCheckout()
 
-        def scmvars = checkout([
-                        $class: 'GitSCM',
-                        branches: [[name: '*/master']],
-                        doGenerateSubmoduleConfigurations: false,
-                        extensions: scm.extensions + [[$class: 'LocalBranch'], [$class: 'WipeWorkspace']],
-                        userRemoteConfigs: scm.userRemoteConfigs
-                                ])
+        def scmvars = checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/ThusithaDJ/sample-flawed-java-app.git']]])
+//         def scmvars = checkout([
+//                         $class: 'GitSCM',
+//                         branches: [[name: '*/master']],
+//                         doGenerateSubmoduleConfigurations: false,
+//                         extensions: scm.extensions + [[$class: 'LocalBranch'], [$class: 'WipeWorkspace']],
+//                         userRemoteConfigs: scm.userRemoteConfigs
+//                                 ])
+
         def commitHash = scmvars.GIT_COMMIT
 //         def gitBranch = scmvars.GIT_BRANCH ? scmvars.GIT_BRANCH : BRANCH
 //
 //         println("Branch :" + BRANCH)
         println("============================= SCM BRANCH :"+ scmvars.GIT_BRANCH)
+        println("============================= env BRANCH :"+ env.BRANCH_NAME)
 
         stage("${val}") {
           echo '${f}'
