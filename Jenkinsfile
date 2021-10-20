@@ -62,6 +62,9 @@ def doDynamicParallelSteps(foos) {
 
         stage("${val}") {
           echo '===================================${f}'
+          sh '''
+                cat README.md
+          '''
         }
         stage("Build ${val}") {
             echo "==================================Building ${val} for ${f}"
