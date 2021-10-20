@@ -61,13 +61,13 @@ def doDynamicParallelSteps(foos) {
         println("============================= env BRANCH :"+ env.BRANCH_NAME)
 
         stage("${val}") {
-          echo '${f}'
+          echo '===================================${f}'
         }
         stage("Build ${val}") {
-            echo "Building ${val} for ${f}"
+            echo "==================================Building ${val} for ${f}"
         }
         stage("test ${val}") {
-            echo "Building for ${val}"
+            echo "=============================Building for ${val}"
         }
         stage('deploy test ${val}') {
             if (env.BRANCH_NAME == 'master') {
