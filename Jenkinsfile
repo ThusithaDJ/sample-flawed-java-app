@@ -42,6 +42,14 @@ def doDynamicParallelSteps(foos) {
     def val = f
     tests["${f}"] = {
       node {
+
+        def scmvars = checkout(scm)
+        def commitHash = scmvars.GIT_COMMIT
+        def gitBranch = scmvars.GIT_BRANCH ? scmvars.GIT_BRANCH : BRANCH
+
+        println("Branch :" + BRANCH)
+        println("Scmvars Branch :"+ gitBranch)
+
         stage("${val}") {
           echo '${f}'
         }
