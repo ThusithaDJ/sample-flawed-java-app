@@ -43,12 +43,18 @@ def doDynamicParallelSteps(foos) {
     tests["${f}"] = {
       node {
 
-        def scmvars = checkout(scm)
+        def scmvars = checkout([
+                        $class: 'GitSCM',
+                        branches: [[name: '*/master']],
+                        doGenerateSubmoduleConfigurations: false,
+                        extensions: scm.extensions + [[$class: 'LocalBranch'], [$class: 'WipeWorkspace']],
+                        userRemoteConfigs: scm.userRemoteConfigs
+                                ])
         def commitHash = scmvars.GIT_COMMIT
 //         def gitBranch = scmvars.GIT_BRANCH ? scmvars.GIT_BRANCH : BRANCH
 //
 //         println("Branch :" + BRANCH)
-        println("Scmvars Branch :"+ scmvars.GIT_BRANCH)
+        println("============================= SCM BRANCH :"+ scmvars.GIT_BRANCH)
 
         stage("${val}") {
           echo '${f}'
@@ -85,7 +91,6 @@ node {
 
         //     generateStage("skipped") // no invocation, stage is skipped
 //         println(params.deploy_env)
-//
 //         stage ('Infrastructure') {
 //             generateStage("sdfghdfg", "nonparallel").call()
 //         }
