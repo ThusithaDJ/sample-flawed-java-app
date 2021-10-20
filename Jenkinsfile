@@ -45,7 +45,7 @@ def doDynamicParallelSteps(foos) {
 
         def scmvars = checkout([
                         $class: 'GitSCM',
-                        branches: scm.branches,
+                        branches: [[name: '*/master'],
                         doGenerateSubmoduleConfigurations: scm.doGenerateSubmoduleConfigurations,
                         extensions: scm.extensions,
                         userRemoteConfigs: scm.userRemoteConfigs
@@ -54,7 +54,7 @@ def doDynamicParallelSteps(foos) {
 //         def gitBranch = scmvars.GIT_BRANCH ? scmvars.GIT_BRANCH : BRANCH
 //
 //         println("Branch :" + BRANCH)
-        println("Scmvars Branch :"+ scmvars.GIT_BRANCH)
+        println("============================= SCM BRANCH :"+ scmvars.GIT_BRANCH)
 
         stage("${val}") {
           echo '${f}'
