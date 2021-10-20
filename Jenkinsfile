@@ -45,9 +45,9 @@ def doDynamicParallelSteps(foos) {
 
         def scmvars = checkout([
                         $class: 'GitSCM',
-                        branches: [[name: 'refs/remotes/origin/master']],
+                        branches: [[name: '*/master']],
                         doGenerateSubmoduleConfigurations: false,
-                        extensions: scm.extensions,
+                        extensions: scm.extensions + [[$class: 'LocalBranch'], [$class: 'WipeWorkspace']],
                         userRemoteConfigs: scm.userRemoteConfigs
                                 ])
         def commitHash = scmvars.GIT_COMMIT
