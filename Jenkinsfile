@@ -45,10 +45,10 @@ def doDynamicParallelSteps(foos) {
 
         def scmvars = checkout(scm)
         def commitHash = scmvars.GIT_COMMIT
-        def gitBranch = scmvars.GIT_BRANCH ? scmvars.GIT_BRANCH : BRANCH
-
-        println("Branch :" + BRANCH)
-        println("Scmvars Branch :"+ gitBranch)
+//         def gitBranch = scmvars.GIT_BRANCH ? scmvars.GIT_BRANCH : BRANCH
+//
+//         println("Branch :" + BRANCH)
+        println("Scmvars Branch :"+ scmvars.GIT_BRANCH)
 
         stage("${val}") {
           echo '${f}'
