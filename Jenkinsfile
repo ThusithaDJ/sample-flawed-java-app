@@ -85,7 +85,6 @@ node {
 
         //     generateStage("skipped") // no invocation, stage is skipped
 //         println(params.deploy_env)
-//
 //         stage ('Infrastructure') {
 //             generateStage("sdfghdfg", "nonparallel").call()
 //         }
