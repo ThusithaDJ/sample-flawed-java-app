@@ -68,8 +68,8 @@ def doDynamicParallelSteps(foos) {
         println("============================= env BRANCH :"+ env.BRANCH_NAME)
 
         stage("${val}") {
-//             sh 'git branch'
-            sh 'git log'
+            sh 'git branch'
+//             sh 'git log'
             sh '''
                 cat README.md
             '''
