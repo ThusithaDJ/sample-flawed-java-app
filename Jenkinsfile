@@ -46,7 +46,7 @@ def doDynamicParallelSteps(foos) {
         println("==================== VAL ========================= "+val)
         def scmvars
 
-        if (val == '1') {
+        if (val == '1' and val == '2') {
             scmvars     = checkout([$class: 'GitSCM', branches: [[name: 'master']], extensions: [],
                                 userRemoteConfigs: [[url: 'https://github.com/ThusithaDJ/sample-flawed-java-app.git']]])
         } else {
