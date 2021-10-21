@@ -43,6 +43,7 @@ def doDynamicParallelSteps(foos) {
     tests["${f}"] = {
       node {
         skipDefaultCheckout()
+        println("==================== VAL ========================= "+val)
 
         if (val == 1) {
             def scmvars     = checkout([$class: 'GitSCM', branches: [[name: 'master']], extensions: [],
