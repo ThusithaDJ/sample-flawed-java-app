@@ -44,8 +44,8 @@ def doDynamicParallelSteps(foos) {
       node {
         skipDefaultCheckout()
 
-        def scmvars     = checkout([$class: 'GitSCM', branches: [[name: 'master']], extensions: [],
-                                    userRemoteConfigs: [[url: 'https://github.com/ThusithaDJ/sample-flawed-java-app.git']]])
+//         def scmvars     = checkout([$class: 'GitSCM', branches: [[name: 'master']], extensions: [],
+//                                     userRemoteConfigs: [[url: 'https://github.com/ThusithaDJ/sample-flawed-java-app.git']]])
 //         def scmvars = checkout([
 //                         $class: 'GitSCM',
 //                         branches: [[name: '*/master']],
@@ -53,15 +53,16 @@ def doDynamicParallelSteps(foos) {
 //                         extensions: scm.extensions + [[$class: 'LocalBranch'], [$class: 'WipeWorkspace']],
 //                         userRemoteConfigs: [[url: 'https://github.com/ThusithaDJ/sample-flawed-java-app.git']]])
 
-        sh 'git checkout master'
-        def commitHash = scmvars.GIT_COMMIT
+        sh 'git checkout origin/master'
+//         def commitHash = scmvars.GIT_COMMIT
 //         def gitBranch = scmvars.GIT_BRANCH ? scmvars.GIT_BRANCH : BRANCH
 //
 //         println("Branch :" + BRANCH)
-        println("============================= SCM BRANCH :"+ scmvars.GIT_BRANCH)
-        println("============================= env BRANCH :"+ env.BRANCH_NAME)
+//         println("============================= SCM BRANCH :"+ scmvars.GIT_BRANCH)
+//         println("============================= env BRANCH :"+ env.BRANCH_NAME)
 
         stage("${val}") {
+          sh 'git branch'
           echo '${f}'
         }
         stage("Build ${val}") {
