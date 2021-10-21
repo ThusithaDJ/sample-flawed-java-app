@@ -44,8 +44,8 @@ def doDynamicParallelSteps(foos) {
       node {
         skipDefaultCheckout()
 
-        def scmvars     = checkout([$class: 'GitSCM', branches: [[name: 'master']], extensions: [],
-                                    userRemoteConfigs: [[url: 'https://github.com/ThusithaDJ/sample-flawed-java-app.git']]])
+//         def scmvars     = checkout([$class: 'GitSCM', branches: [[name: 'master']], extensions: [],
+//                                     userRemoteConfigs: [[url: 'https://github.com/ThusithaDJ/sample-flawed-java-app.git']]])
 
 //         def scmvars = checkout([
 //                         $class: 'GitSCM',
@@ -54,11 +54,11 @@ def doDynamicParallelSteps(foos) {
 //                         extensions: scm.extensions + [[$class: 'LocalBranch'], [$class: 'WipeWorkspace']],
 //                         userRemoteConfigs: [[url: 'https://github.com/ThusithaDJ/sample-flawed-java-app.git']]])
 
-//             def scmvars = checkout([
-//                             $class: 'GitSCM',
-//                             branches: [[name: '*/master']],
-//                             userRemoteConfigs: scm.userRemoteConfigs
-//                           ])
+            def scmvars = checkout([
+                            $class: 'GitSCM',
+                            branches: [[name: '*/master']],
+                            userRemoteConfigs: scm.userRemoteConfigs
+                          ])
 
 //         sh 'git checkout master'
         def commitHash = scmvars.GIT_COMMIT
