@@ -54,6 +54,7 @@ def doDynamicParallelSteps(foos) {
 //                         userRemoteConfigs: [[url: 'https://github.com/ThusithaDJ/sample-flawed-java-app.git']]])
 
         sh 'git checkout origin/master'
+        sh 'git pull'
 //         def commitHash = scmvars.GIT_COMMIT
 //         def gitBranch = scmvars.GIT_BRANCH ? scmvars.GIT_BRANCH : BRANCH
 //
