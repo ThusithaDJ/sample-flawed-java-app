@@ -57,6 +57,7 @@ def doDynamicParallelSteps(foos) {
             def scmvars = checkout([
                             $class: 'GitSCM',
                             branches: [[name: '*/master']],
+                            extensions: scm.extensions + [[$class: 'LocalBranch'], [$class: 'WipeWorkspace']],
                             userRemoteConfigs: scm.userRemoteConfigs
                           ])
 
