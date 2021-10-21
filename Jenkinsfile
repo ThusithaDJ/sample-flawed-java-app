@@ -46,6 +46,7 @@ def doDynamicParallelSteps(foos) {
 
 //         def scmvars     = checkout([$class: 'GitSCM', branches: [[name: 'master']], extensions: [],
 //                                     userRemoteConfigs: [[url: 'https://github.com/ThusithaDJ/sample-flawed-java-app.git']]])
+
 //         def scmvars = checkout([
 //                         $class: 'GitSCM',
 //                         branches: [[name: '*/master']],
