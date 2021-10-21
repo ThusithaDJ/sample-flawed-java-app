@@ -70,6 +70,9 @@ def doDynamicParallelSteps(foos) {
         stage("${val}") {
             sh 'git branch'
             sh 'git log'
+            sh '''
+                cat README.md
+            '''
           echo '${f}'
         }
         stage("Build ${val}") {
