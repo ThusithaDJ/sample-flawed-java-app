@@ -45,7 +45,7 @@ def doDynamicParallelSteps(foos) {
         skipDefaultCheckout()
         println("==================== VAL ========================= "+val)
 
-        if (val == 1) {
+        if (val == '1') {
             def scmvars     = checkout([$class: 'GitSCM', branches: [[name: 'master']], extensions: [],
                                 userRemoteConfigs: [[url: 'https://github.com/ThusithaDJ/sample-flawed-java-app.git']]])
             println("============================= SCM BRANCH :"+ scmvars.GIT_BRANCH)
