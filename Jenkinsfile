@@ -53,17 +53,23 @@ def doDynamicParallelSteps(foos) {
 //                         extensions: scm.extensions + [[$class: 'LocalBranch'], [$class: 'WipeWorkspace']],
 //                         userRemoteConfigs: [[url: 'https://github.com/ThusithaDJ/sample-flawed-java-app.git']]])
 
-        sh 'git checkout origin/master'
-        sh 'git pull'
-//         def commitHash = scmvars.GIT_COMMIT
+            def scmvars = checkout([
+                            $class: 'GitSCM',
+                            branches: [[name: '*/master']],
+                            userRemoteConfigs: scm.userRemoteConfigs
+                          ])
+
+//         sh 'git checkout master'
+        def commitHash = scmvars.GIT_COMMIT
 //         def gitBranch = scmvars.GIT_BRANCH ? scmvars.GIT_BRANCH : BRANCH
 //
 //         println("Branch :" + BRANCH)
-//         println("============================= SCM BRANCH :"+ scmvars.GIT_BRANCH)
-//         println("============================= env BRANCH :"+ env.BRANCH_NAME)
+        println("============================= SCM BRANCH :"+ scmvars.GIT_BRANCH)
+        println("============================= env BRANCH :"+ env.BRANCH_NAME)
 
         stage("${val}") {
-          sh 'git branch'
+            sh 'git branch'
+            sh 'git log'
           echo '${f}'
         }
         stage("Build ${val}") {
