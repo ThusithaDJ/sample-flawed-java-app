@@ -83,7 +83,6 @@ def doDynamicParallelSteps(foos) {
                 cat README.md
             '''
           echo '${f}'
-          step([$class: 'Mailer', recipients: 'thusitha.blade@gmail.com', sendToIndividuals: true])
         }
         stage("Build ${val}") {
             echo "Building ${val} for ${f}"
@@ -128,5 +127,7 @@ node {
     } catch(err) {
         println("ERR: ${err}")
         currentBuild.result = 'FAILED'
+    } finally {
+        step([$class: 'Mailer', recipients: 'thusitha.blade@gmail.com', sendToIndividuals: true])
     }
 }
