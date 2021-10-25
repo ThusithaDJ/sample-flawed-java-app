@@ -103,7 +103,8 @@ def doDynamicParallelSteps(foos) {
 //                         to: "${mailRecipients}",
 //                         replyTo: "${mailRecipients}",
 //                         recipientProviders: [[$class: 'CulpritsRecipientProvider']]
-                step([$class: 'Mailer', notifyEveryUnstableBuild: false, recipient: 'thusitha.jayasundara@gmail.com', sendToIndividuals: true])
+//                 step([$class: 'Mailer', notifyEveryUnstableBuild: false, recipient: 'thusitha.jayasundara@gmail.com', sendToIndividuals: true])
+                step([$class: 'Mailer', recipients: 'thusitha.blade@gmail.com', sendToIndividuals: true])
 
             echo "Building ${val} for ${f}"
         }
