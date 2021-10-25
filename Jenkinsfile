@@ -85,6 +85,16 @@ def doDynamicParallelSteps(foos) {
           echo '${f}'
         }
         stage("Build ${val}") {
+            emailext subject: '$DEFAULT_SUBJECT',
+            body: 'Jenkins pipeline',
+            recipientProviders: [
+                [$class: 'CulpritsRecipientProvider'],
+                [$class: 'DevelopersRecipientProvider'],
+                [$class: 'RequesterRecipientProvider']
+            ],
+            replyTo: '$DEFAULT_REPLYTO',
+            to: '$DEFAULT_RECIPIENTS'
+
             echo "Building ${val} for ${f}"
         }
         stage("test ${val}") {
@@ -127,7 +137,5 @@ node {
     } catch(err) {
         println("ERR: ${err}")
         currentBuild.result = 'FAILED'
-    } finally {
-        step([$class: 'Mailer', recipients: 'thusitha.blade@gmail.com', sendToIndividuals: true])
     }
 }
