@@ -97,14 +97,14 @@ def doDynamicParallelSteps(foos) {
 //                 def mailRecipients = "thusitha.jayasundara@gmail.com"
 //                     def jobName = currentBuild.fullDisplayName
 //
-//                     emailext body: '''${SCRIPT, template="groovy-html.template"}''',
-//                         mimeType: 'text/html',
-//                         subject: "[Jenkins] ${jobName}",
-//                         to: "${mailRecipients}",
-//                         replyTo: "${mailRecipients}",
-//                         recipientProviders: [[$class: 'CulpritsRecipientProvider']]
+                    emailext body: '''${SCRIPT, template="groovy-html.template"}''',
+                        mimeType: 'text/html',
+                        subject: "[Jenkins] ${jobName}",
+                        to: "${mailRecipients}",
+                        replyTo: "${mailRecipients}",
+                        recipientProviders: [[$class: 'CulpritsRecipientProvider']]
 //                 step([$class: 'Mailer', notifyEveryUnstableBuild: false, recipient: 'thusitha.jayasundara@gmail.com', sendToIndividuals: true])
-                step([$class: 'Mailer', recipients: 'thusitha.blade@gmail.com', sendToIndividuals: true])
+//                 step([$class: 'Mailer', recipients: 'thusitha.blade@gmail.com', sendToIndividuals: true])
 
             echo "Building ${val} for ${f}"
         }
