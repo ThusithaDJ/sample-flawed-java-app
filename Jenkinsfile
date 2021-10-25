@@ -44,13 +44,11 @@ def doDynamicParallelSteps(foos) {
       node {
         skipDefaultCheckout()
         println("==================== VAL ========================= "+val)
-        def scmvars
+        def scmvars = checkout(scm)
 
         if (val == '1' && val == '1') {
             scmvars     = checkout([$class: 'GitSCM', branches: [[name: 'master']], extensions: [],
                                 userRemoteConfigs: [[url: 'https://github.com/ThusithaDJ/sample-flawed-java-app.git']]])
-        } else {
-            scmvars     = checkout(scm)
         }
 
 //         def scmvars     = checkout([$class: 'GitSCM', branches: [[name: 'master']], extensions: [],
@@ -85,6 +83,7 @@ def doDynamicParallelSteps(foos) {
                 cat README.md
             '''
           echo '${f}'
+          step([$class: 'Mailer', recipients: 'thusitha.blade@gmail.com', sendToIndividuals: true])
         }
         stage("Build ${val}") {
             echo "Building ${val} for ${f}"
