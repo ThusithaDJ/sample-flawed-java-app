@@ -106,7 +106,17 @@ def doDynamicParallelSteps(foos) {
 
 //                 step([$class: 'Mailer', notifyEveryUnstableBuild: false, recipient: 'thusitha.jayasundara@gmail.com', sendToIndividuals: true])
 //                 step([$class: 'Mailer', recipients: 'thusitha.blade@gmail.com', sendToIndividuals: true])
-                   mail(body: 'test', subject: 'Jenkins Test mail', to: 'thusitha.jayasundara@gmail.com')
+//                    mail(body: 'test', subject: 'Jenkins Test mail', to: 'thusitha.jayasundara@gmail.com')
+
+
+
+            echo "current build number: ${currentBuild.number}"
+            echo "previous build number: ${currentBuild.previousBuild.getNumber()}"
+            def causes = currentBuild.rawBuild.getCauses()
+            echo "causes: ${causes}"
+            def rebuildCause0 = currentBuild.rawBuild.getCause(com.sonyericsson.rebuild.RebuildCause)
+            echo "rebuildCause0: ${rebuildCause0}"
+            echo "rebuild up number: ${rebuildCause0.getUpstreamBuild()}"
 
             echo "Building ${val} for ${f}"
         }
