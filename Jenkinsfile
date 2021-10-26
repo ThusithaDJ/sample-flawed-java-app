@@ -112,11 +112,12 @@ def doDynamicParallelSteps(foos) {
 
             echo "current build number: ${currentBuild.number}"
             echo "previous build number: ${currentBuild.previousBuild.getNumber()}"
-            def causes = currentBuild.rawBuild.getCauses()
-            echo "causes: ${causes}"
-            def rebuildCause0 = currentBuild.rawBuild.getCause(com.sonyericsson.rebuild.RebuildCause)
-            echo "rebuildCause0: ${rebuildCause0}"
-            echo "rebuild up number: ${rebuildCause0.getUpstreamBuild()}"
+            echo "URL de build: ${env.BUILD_URL}"
+//             def causes = currentBuild.rawBuild.getCauses()
+//             echo "causes: ${causes}"
+//             def rebuildCause0 = currentBuild.rawBuild.getCause(com.sonyericsson.rebuild.RebuildCause)
+//             echo "rebuildCause0: ${rebuildCause0}"
+//             echo "rebuild up number: ${rebuildCause0.getUpstreamBuild()}"
 
             echo "Building ${val} for ${f}"
         }
